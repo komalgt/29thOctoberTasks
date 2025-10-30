@@ -29,8 +29,19 @@ jobs:
           pip install -r requirements.txt
           pip install -r requirements-dev.txt
 
+      - name: Add repo root to PYTHONPATH
+        run: echo "PYTHONPATH=${{ github.workspace }}" >> $GITHUB_ENV
+
+      - name: Debug PYTHONPATH and directory contents
+        run: |
+          echo "PYTHONPATH is: $PYTHONPATH"
+          echo "Directory Listing:"
+          ls -l
+          echo "mylambda Listing:"
+          ls -l mylambda
+
       - name: Run tests with coverage
         run: pytest --cov=mylambda tests/
 
       - name: Show coverage report
-        run: coverage report || true  # Never fails the job, just displays the report
+        run: coverage report || true  # Show the report, do not fail build on report error
