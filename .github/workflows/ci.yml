@@ -33,6 +33,7 @@ jobs:
         run: echo "PYTHONPATH=${{ github.workspace }}" >> $GITHUB_ENV
 
       - name: Debug PYTHONPATH and directory contents
+        shell: bash
         run: |
           echo "PYTHONPATH is: $PYTHONPATH"
           echo "Directory Listing:"
