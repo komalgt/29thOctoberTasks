@@ -1,4 +1,4 @@
-name: Lambda CI..
+name: Lambda CI
 
 on:
   push:
@@ -28,24 +28,4 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-          pip install -r requirements-dev.txt
-
-      - name: Debug PYTHONPATH and directory contents
-        shell: bash
-        run: |
-          echo "PYTHONPATH is: $PYTHONPATH"
-          echo "Directory Listing:"
-          ls -l
-          echo "mylambda Listing:"
-          ls -l mylambda
-
-      - name: Run tests with coverage (cross-platform safe)
-        shell: bash
-        run: |
-          export PYTHONPATH="${PYTHONPATH}:${GITHUB_WORKSPACE}"
-          echo "PYTHONPATH is: $PYTHONPATH"
-          pytest --cov=mylambda tests/
-
-      - name: Show coverage report
-        shell: bash
-        run: coverage report || true
+          pip install -
