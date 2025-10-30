@@ -1,21 +1,6 @@
-import unittest
-from my_lambda_function.handler import lambda_handler
+from hello_world import lambda_handler
 
-class TestLambdaHandler(unittest.TestCase):
-    def test_square_positive(self):
-        event = {"number": 3}
-        result = lambda_handler(event, None)
-        self.assertEqual(result["result"], 9)
-
-    def test_square_negative(self):
-        event = {"number": -4}
-        result = lambda_handler(event, None)
-        self.assertEqual(result["result"], 16)
-
-    def test_square_default(self):
-        event = {}
-        result = lambda_handler(event, None)
-        self.assertEqual(result["result"], 1)
-
-if __name__ == "__main__":
-    unittest.main()
+def test_lambda_handler_returns_hello():
+    resp = lambda_handler({}, None)
+    assert resp["statusCode"] == 200
+    assert resp["body"] == "Hello, world!"
