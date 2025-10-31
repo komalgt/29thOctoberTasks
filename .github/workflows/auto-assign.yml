@@ -1,0 +1,18 @@
+name: Auto Assign Issues by Label
+
+on:
+  issues:
+    types:
+      - opened
+      - labeled
+
+jobs:
+  assign_based_on_label:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Assign if bug
+        if: contains(github.event.issue.labels.*.name, 'bug')
+        uses: actions-ecosystem/action-add-assignees@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          assignees: komalgt
